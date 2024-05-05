@@ -1,8 +1,8 @@
-import ChatModel from "../schemas/Chat"
-import GroupModel from "../schemas/Group";
-import IndividualModel from "../schemas/Individual";
-import ProfileModel from "../schemas/Profile";
-import { IConnection, NewMessageArgs } from "./socketServer"
+import ChatModel from "./schemas/Chat.js";
+import GroupModel from "./schemas/Group.js";
+import IndividualModel from "./schemas/Individual.js";
+import ProfileModel from "./schemas/Profile.js";
+import { NewMessageArgs, IConnection } from "./index.js";
 
 export const notifyNewMessage = async (messageInfo: NewMessageArgs["data"], connections: Array<IConnection>) => {
     const chat = await ChatModel.findById(messageInfo.chatId);

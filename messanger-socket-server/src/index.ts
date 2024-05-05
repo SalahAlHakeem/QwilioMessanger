@@ -1,8 +1,10 @@
-import {client, server} from 'websocket';
+import {server} from 'websocket';
 import http from 'http';
-import { notifyNewMessage, removeDeletedMessage, updateProfileActivity } from './notification';
+import { notifyNewMessage, removeDeletedMessage, updateProfileActivity } from './notification.js'
 import dotenv from 'dotenv'
 import mongoose from 'mongoose';
+
+dotenv.config();
 
 export interface IConnection {
     profileId: string, 
@@ -16,10 +18,9 @@ const httpServer = http.createServer((request, response) => {
     response.end();
 })
 
-httpServer.listen(8080, async () => {
-    dotenv.config();
-    if (process.env.MONGO_URI) {
-        await mongoose.connect(process.env.MONGO_URI);
+httpServer.listen(process.env.PORT || 8080, async () => {
+    if (process.env.MONGODB_URI) {
+        await mongoose.connect(process.env.MONGODB_URI);
     }
     console.log('http server for websocket is listening on port 8080');
 })

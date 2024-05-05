@@ -13,8 +13,8 @@ import fs from 'fs/promises'
 async function main() {
   dotenv.config();
 
-  if (process.env.MONGO_URI) {
-    await mongoose.connect(process.env.MONGO_URI);
+  if (process.env.MONGODB_URI) {
+    await mongoose.connect(process.env.MONGODB_URI);
   }
 
   const app = express();
